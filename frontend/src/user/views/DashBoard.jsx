@@ -49,6 +49,14 @@ function UserDashboard() {
             <h3 className="text-2xl font-semibold mb-2 text-center">Vote</h3>
             <p className="text-center">Cast your vote in ongoing elections securely and easily.</p>
           </div>
+
+          <div
+            onClick={() => navigate("/user/results")}
+            className="h-48 bg-pink-400 text-white rounded-lg shadow-lg p-6 cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-pink-500 flex flex-col justify-center"
+          >
+            <h3 className="text-2xl font-semibold mb-2 text-center">Results</h3>
+            <p className="text-center">View real-time results and summaries of elections.</p>
+          </div>
         </div>
       </div>
     </Layout>
