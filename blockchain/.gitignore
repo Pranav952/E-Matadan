@@ -1,0 +1,10 @@
+# Truffle and Blockchain related files
+/node_modules
+/build
+/tests/*.json
+/contracts/migrations/*.json
+/truffle-config.js
+/.DS_Store
+npm-debug.log
+*.log
+*.d
