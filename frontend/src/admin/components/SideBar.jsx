@@ -26,6 +26,7 @@ function SideBar() {
               to="/admin"
               className="flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-all"
             >
+              
               <FaHome className="text-xl" />
               <span className="ml-3">Dashboard</span>
             </Link>
