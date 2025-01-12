@@ -11,7 +11,6 @@ const Login = () => {
   };
 
   return (
-    <Layout>
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="w-full max-w-md  p-10 space-y-8 bg-gray-200 rounded-2xl shadow-lg">
           <h1 className="text-3xl font-extrabold text-center  text-gray-800">
@@ -82,7 +81,7 @@ const Login = () => {
           </p>
         </div>
       </div>
-    </Layout>
+   
   );
 };
 export default Login;
