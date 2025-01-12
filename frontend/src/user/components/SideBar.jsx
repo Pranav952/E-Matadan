@@ -16,11 +16,44 @@ function SideBar() {
           <FaBars className="text-2xl" />
         </button>
         <span className="text-2xl font-semibold text-center text-indigo-200 ml-5">ई-matadan</span>
-        <Link to="/user/notifications" className="text-white mr-10">
-          <FaBell className="text-xl" />
-        </Link>
+        
+        {/* Profile and Notification Icons */}
+        <div className="flex items-center space-x-6 mr-10">
+          <Link to="/user/notifications" className="text-white">
+            <FaBell className="text-xl" />
+          </Link>
+          <div className="relative">
+            <button onClick={toggleProfileMenu} className="flex items-center text-white">
+              <FaUserCircle className="text-2xl" />
+            </button>
+            {/* Smooth Transition for Profile Menu */}
+            {isProfileMenuOpen && (
+              <ul className="absolute right-0 mt-3 space-y-2 bg-blue-800 text-white p-2 rounded-lg shadow-md w-48 transition-transform transform duration-300 ease-in-out z-30">
+                <li>
+                  <Link to="/user-login" className="flex items-center px-5 py-2 rounded-lg hover:bg-blue-600 transition-all">
+                    <FaVoteYea className="text-xl" />
+                    <span className="ml-3">Login as Candidate</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/user-register" className="flex items-center px-5 py-2 rounded-lg hover:bg-blue-600 transition-all">
+                    <FaVoteYea className="text-xl" />
+                    <span className="ml-3">Register as Candidate</span>
+                  </Link>
+                </li>
+                <li>
+                  <button onClick={() => console.log("Logging out...")} className="flex items-center px-5 py-2 rounded-lg hover:bg-red-600 transition-all w-full">
+                    <FaSignOutAlt className="text-xl" />
+                    <span className="ml-3">Logout</span>
+                  </button>
+                </li>
+              </ul>
+            )}
+          </div>
+        </div>
       </div>
 
+      {/* Sidebar Section */}
       <div className="bg-blue-900 text-white w-64 space-y-6 px-2 py-7 md:block hidden fixed top-0 left-0 h-full z-10 pt-16">
         <ul className="space-y-4">
           <li>
@@ -65,38 +98,10 @@ function SideBar() {
               <span className="ml-3">Settings</span>
             </Link>
           </li>
-          <li>
-            <button onClick={toggleProfileMenu} className="flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-all w-full">
-              <FaUserCircle className="text-xl" />
-              <span className="ml-3">Profile</span>
-              <i className={`ml-auto bx ${isProfileMenuOpen ? "bx-chevron-up" : "bx-chevron-down"} text-xl`}></i>
-            </button>
-            {isProfileMenuOpen && (
-              <ul className="pl-6 mt-2 space-y-2">
-                <li>
-                  <Link to="/user-login" className="flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-all w-full">
-                    <FaVoteYea className="text-xl" />
-                    <span className="ml-3">Login as Candidate</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/user-register" className="flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-all w-full">
-                    <FaVoteYea className="text-xl" />
-                    <span className="ml-3">Register as Candidate</span>
-                  </Link>
-                </li>
-                <li>
-                  <button onClick={() => console.log("Logging out...")} className="flex items-center px-4 py-2 rounded-lg hover:bg-red-600 transition-all w-full">
-                    <FaSignOutAlt className="text-xl" />
-                    <span className="ml-3">Logout</span>
-                  </button>
-                </li>
-              </ul>
-            )}
-          </li>
         </ul>
       </div>
 
+      {/* Mobile Menu Section */}
       <div className={`fixed inset-0 bg-blue-900 text-white w-64 z-50 transform transition-transform ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"} md:hidden`}>
         <div className="flex justify-end p-4">
           <button onClick={toggleMobileMenu} className="text-white">
@@ -146,38 +151,10 @@ function SideBar() {
               <span className="ml-3">Settings</span>
             </Link>
           </li>
-          <li>
-            <button onClick={toggleProfileMenu} className="flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-all w-full">
-              <FaUserCircle className="text-xl" />
-              <span className="ml-3">Profile</span>
-              <i className={`ml-auto bx ${isProfileMenuOpen ? "bx-chevron-up" : "bx-chevron-down"} text-xl`}></i>
-            </button>
-            {isProfileMenuOpen && (
-              <ul className="pl-6 mt-2 space-y-2">
-                <li>
-                  <Link to="#" className="flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-all w-full">
-                    <FaVoteYea className="text-xl" />
-                    <span className="ml-3">Login as Candidate</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#" className="flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-all w-full">
-                    <FaVoteYea className="text-xl" />
-                    <span className="ml-3">Register as Candidate</span>
-                  </Link>
-                </li>
-                <li>
-                  <button onClick={() => console.log("Logging out...")} className="flex items-center px-4 py-2 rounded-lg hover:bg-red-600 transition-all w-full">
-                    <FaSignOutAlt className="text-xl" />
-                    <span className="ml-3">Logout</span>
-                  </button>
-                </li>
-              </ul>
-            )}
-          </li>
         </ul>
       </div>
     </div>
   );
 }
+
 export default SideBar;
