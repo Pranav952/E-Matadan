@@ -33,9 +33,9 @@ const FeedbackForm = () => {
     setFormStatus('success');
     console.log('Form Submitted:', formData);
 
-    setTimeout(() => {
-      navigate('/user'); // Redirect to main dashboard after 2 seconds
-    }, 2000);
+    // setTimeout(() => {
+    //   navigate('/user'); // Redirect to main dashboard after 2 seconds
+    // }, 2000);
 
 // setFormData({
 //       name: '',
