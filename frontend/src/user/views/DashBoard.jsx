@@ -18,7 +18,7 @@ function UserDashboard() {
             <p className="text-center">Provide feedback to help us improve our services.</p>
           </div>
 
-          <div
+          {/* <div
             onClick={() => navigate("/user/register")}
             className="h-48 bg-indigo-400 text-white rounded-lg shadow-lg p-6 cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-indigo-500 flex flex-col justify-center"
           >
@@ -32,7 +32,7 @@ function UserDashboard() {
           >
             <h3 className="text-2xl font-semibold mb-2 text-center">Settings</h3>
             <p className="text-center">Update your profile and manage preferences.</p>
-          </div>
+          </div> */}
 
           <div
             onClick={() => navigate("/user/support")}
