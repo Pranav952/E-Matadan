@@ -1,14 +1,31 @@
 import React from 'react';
 import './index.css';
+import { Routes } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AdminRoutes from './admin/Routes';
 import UserRoutes from './user/Routes';
+import Register from './user/views/Register';
+import Login from './user/views/Login';
+import Dashboard from './admin/views/Dashboard';
+
 
 function App() {
   return(
     <Router>
-      <AdminRoutes/>
-      <UserRoutes/>
+      <Routes>
+        {/* Default route */}
+        <Route path="/" element={<Dashboard/>} />
+
+        {/* Login route */}
+        <Route path="/login" element={<Login />} />
+
+        {/* User and Admin Routes */}
+        <Route path="/user/*" element={<UserRoutes />} />
+        <Route path="/admin/*" element={<AdminRoutes />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </Router>
   );
 }

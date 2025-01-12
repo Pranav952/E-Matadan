@@ -2,6 +2,7 @@ package com.ematadan.springboot.config;
 
 
 
+
 import com.ematadan.springboot.filter.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -79,5 +80,7 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-}
 
+
+   
+}
