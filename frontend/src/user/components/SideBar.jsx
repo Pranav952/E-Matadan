@@ -11,7 +11,6 @@ function SideBar() {
 
   return (
     <div className="relative">
-    
       <div className="bg-blue-900 text-white w-full fixed top-0 left-0 z-20 flex justify-between items-center p-4 shadow-md">
         <button onClick={toggleMobileMenu} className="md:hidden text-white">
           <FaBars className="text-2xl" />
@@ -29,21 +28,21 @@ function SideBar() {
             </button>
             {/* Smooth Transition for Profile Menu */}
             {isProfileMenuOpen && (
-              <ul className="absolute right-5 mt-3 space-y-2 bg-blue-800 text-white p-2 rounded-lg shadow-md w-48 transition-transform transform duration-300 ease-in-out">
+              <ul className="absolute right-0 mt-3 space-y-2 bg-blue-800 text-white p-2 rounded-lg shadow-md w-48 transition-transform transform duration-300 ease-in-out z-30">
                 <li>
-                  <Link to="/user-login" className="flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
+                  <Link to="/user-login" className="flex items-center px-5 py-2 rounded-lg hover:bg-blue-600 transition-all">
                     <FaVoteYea className="text-xl" />
                     <span className="ml-3">Login as Candidate</span>
                   </Link>
                 </li>
                 <li>
-                  <Link to="/user-register" className="flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
+                  <Link to="/user-register" className="flex items-center px-5 py-2 rounded-lg hover:bg-blue-600 transition-all">
                     <FaVoteYea className="text-xl" />
                     <span className="ml-3">Register as Candidate</span>
                   </Link>
                 </li>
                 <li>
-                  <button onClick={() => console.log("Logging out...")} className="flex items-center px-4 py-2 rounded-lg hover:bg-red-600 transition-all w-full">
+                  <button onClick={() => console.log("Logging out...")} className="flex items-center px-5 py-2 rounded-lg hover:bg-red-600 transition-all w-full">
                     <FaSignOutAlt className="text-xl" />
                     <span className="ml-3">Logout</span>
                   </button>
