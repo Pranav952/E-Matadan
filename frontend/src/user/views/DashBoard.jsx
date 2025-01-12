@@ -12,7 +12,7 @@ function UserDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <div
             onClick={() => navigate("/user/feedback")}
-            className="h-48 bg-purple-500 text-white rounded-lg shadow-lg p-6 cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-purple-600 flex flex-col justify-center"
+            className="h-48 bg-violet-400 text-white rounded-lg shadow-lg p-6 cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-violet-500 flex flex-col justify-center"
           >
             <h3 className="text-2xl font-semibold mb-2 text-center">Feedback</h3>
             <p className="text-center">Provide feedback to help us improve our services.</p>
@@ -20,7 +20,7 @@ function UserDashboard() {
 
           <div
             onClick={() => navigate("/user/register")}
-            className="h-48 bg-indigo-500 text-white rounded-lg shadow-lg p-6 cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-indigo-600 flex flex-col justify-center"
+            className="h-48 bg-indigo-400 text-white rounded-lg shadow-lg p-6 cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-indigo-500 flex flex-col justify-center"
           >
             <h3 className="text-2xl font-semibold mb-2 text-center">Register</h3>
             <p className="text-center">Register for events, updates, or new features.</p>
@@ -28,7 +28,7 @@ function UserDashboard() {
 
           <div
             onClick={() => navigate("/user/settings")}
-            className="h-48 bg-teal-500 text-white rounded-lg shadow-lg p-6 cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-teal-600 flex flex-col justify-center"
+            className="h-48 bg-teal-400 text-white rounded-lg shadow-lg p-6 cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-teal-500 flex flex-col justify-center"
           >
             <h3 className="text-2xl font-semibold mb-2 text-center">Settings</h3>
             <p className="text-center">Update your profile and manage preferences.</p>
@@ -36,21 +36,21 @@ function UserDashboard() {
 
           <div
             onClick={() => navigate("/user/support")}
-            className="h-48 bg-orange-500 text-white rounded-lg shadow-lg p-6 cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-orange-600 flex flex-col justify-center"
+            className="h-48 bg-orange-400 text-white rounded-lg shadow-lg p-6 cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-orange-500 flex flex-col justify-center"
           >
             <h3 className="text-2xl font-semibold mb-2 text-center">Support</h3>
             <p className="text-center">Contact support for assistance and queries.</p>
           </div>
 
           <div
-      //       onClick={() => navigate("/user/vote")}
-      //       className="h-48 bg-blue-500 text-white rounded-lg shadow-lg p-6 cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-blue-600 flex flex-col justify-center"
-      //     >
-      //       <h3 className="text-2xl font-semibold mb-2 text-center">Vote</h3>
-      //       <p className="text-center">Cast your vote in ongoing elections securely and easily.</p>
-      //     </div>
-      //   </div>
-      // </div>
+            onClick={() => navigate("/user/vote")}
+            className="h-48 bg-blue-400 text-white rounded-lg shadow-lg p-6 cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-blue-500 flex flex-col justify-center"
+          >
+            <h3 className="text-2xl font-semibold mb-2 text-center">Vote</h3>
+            <p className="text-center">Cast your vote in ongoing elections securely and easily.</p>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 }
