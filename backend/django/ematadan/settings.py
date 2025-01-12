@@ -57,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'jwt_auth.jwt_middleware.JWTAuthenticationMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'ematadan.urls'
@@ -128,5 +130,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3001',  # your frontend origin
+    'http://localhost:8080'
     # other origins as needed
 ]
+
+
+from jwt_auth.jwt_service import fetch_jwt_key
+
+try:
+    print("Attempting to fetch JWT secret key...")
+    SECRET_KEY = fetch_jwt_key()   # Use a fallback if key fetch fails
+    print(SECRET_KEY)
+except Exception as e:
+    print(f"Error: {e}")
