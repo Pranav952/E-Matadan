@@ -13,7 +13,7 @@ const Login = () => {
   return (
     <Layout>
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="w-full max-w-md p-10 space-y-8 bg-white rounded-2xl shadow-lg">
+        <div className="w-full max-w-md  p-10 space-y-8 bg-gray-200 rounded-2xl shadow-lg">
           <h1 className="text-3xl font-extrabold text-center  text-gray-800">
             Welcome Back
           </h1>
@@ -62,28 +62,7 @@ const Login = () => {
               Login
             </button>
           </form>
-          <div className="flex items-center justify-center mt-4 space-x-2">
-            <span className="w-20 h-px bg-gray-300"></span>
-            <span className="text-sm text-gray-500">OR</span>
-            <span className="w-20 h-px bg-gray-300"></span>
-          </div>
-          <button className="flex items-center justify-center w-full px-4 py-3 mt-4 text-sm font-semibold text-gray-700 bg-gray-100 border rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
-            <svg
-              className="w-5 h-5 mr-2"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M16 8a6 6 0 01-12 0m16 0a6 6 0 01-12 0m4 8v5m0 0l-3-3m3 3l3-3"
-              />
-            </svg>
-            Login with Google
-          </button>
+
           <div className="flex justify-between mt-6 text-sm text-gray-600">
             <a href="/forgot-password" className="hover:text-blue-500">
               Forgot Password?

@@ -18,8 +18,8 @@ const Register = () => {
 
   return (
     <Layout>
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-200 via-white to-blue-100">
-        <div className="w-full max-w-lg p-10 space-y-8 bg-white rounded-3xl shadow-2xl">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-brfrom-purple-200 via-white to-purple-100">
+        <div className="w-full max-w-lg p-10 space-y-8 bg-gray-200 rounded-3xl shadow-2xl">
           <h1 className="text-5xl font-extrabold text-center text-gray-700">
             Create Account
           </h1>
@@ -102,29 +102,7 @@ const Register = () => {
               Register
             </button>
           </form>
-          <div className="relative flex items-center justify-center mt-4">
-            <span className="absolute bg-white px-3 text-sm text-gray-500">
-              OR
-            </span>
-            <span className="block w-full h-px bg-gray-300"></span>
-          </div>
-          <button className="flex items-center justify-center w-full px-4 py-3 mt-4 text-lg font-semibold text-gray-700 bg-gray-50 border border-gray-300 rounded-lg shadow-md hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-purple-300">
-            <svg
-              className="w-5 h-5 mr-2"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M16 8a6 6 0 01-12 0m16 0a6 6 0 01-12 0m4 8v5m0 0l-3-3m3 3l3-3"
-              />
-            </svg>
-            Login with Google
-          </button>
+
           <p className="mt-6 text-sm text-center text-gray-600">
             Already have an account?{" "}
             <a
