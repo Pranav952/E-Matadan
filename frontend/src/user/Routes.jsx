@@ -10,21 +10,89 @@ import Notification from "./views/Notifications";
 import Result from "./views/Results";
 import Login from "./views/Login";
 import Register from "./views/Register";
+import ProtectedRoute from "../utils/ProtectedRoute";
+import { Navigate } from "react-router-dom";
 
 function UserRoutes()
 {
     return(
         <Routes>
-            <Route path="user" element={<Dashboard/>}/>
-            <Route path='user/voting-apply' element={<ApplyForVoting/>}/>
-            <Route path='user/vote' element={<Vote/>}/>
-            <Route path='user/results' element={<Result/>}/>
-            <Route path='user/feedback' element={<FeedBack/>}/>
-            <Route path='user/support' element={<Support/>}/>
-            <Route path='user/settings' element={<Setting/>}/>
-            <Route path='user/notifications' element={<Notification/>}/>
-            <Route path='user-login' element={<Login/>}/>
-            <Route path='user-register' element={<Register/>}/>
+      {/* Default route for /user */}
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute requiredRole="user">
+            <Navigate to="dashboard" replace />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="dashboard"
+        element={
+          <ProtectedRoute requiredRole="user">
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="voting-apply"
+        element={
+          <ProtectedRoute requiredRole="user">
+            <ApplyForVoting />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="vote"
+        element={
+          <ProtectedRoute requiredRole="user">
+            <Vote />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="results"
+        element={
+          <ProtectedRoute requiredRole="user">
+            <Result />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="feedback"
+        element={
+          <ProtectedRoute requiredRole="user">
+            <FeedBack />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="support"
+        element={
+          <ProtectedRoute requiredRole="user">
+            <Support />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="settings"
+        element={
+          <ProtectedRoute requiredRole="user">
+            <Setting />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="notifications"
+        element={
+          <ProtectedRoute requiredRole="user">
+            <Notification />
+          </ProtectedRoute>
+        }
+      />
+
+    <Route path='user-login' element={<Login/>}/>
+    <Route path='user-register' element={<Register/>}/>
         </Routes>
     )
 }
