@@ -17,27 +17,27 @@ const FeedbackForm = () => {
     district: ''
   });
 
-//   const [formStatus, setFormStatus] = useState(null);
-//   const navigate = useNavigate(); // Hook for navigation
+  const [formStatus, setFormStatus] = useState(null);
+  const navigate = useNavigate(); // Hook for navigation
 
-//   const handleInputChange = (e) => {
-//     const { name, value, type, checked } = e.target;
-//     setFormData({
-//       ...formData,
-//       [name]: type === 'checkbox' ? checked : value,
-//     });
-//   };
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value,
+    });
+  };
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     setFormStatus('success');
-//     console.log('Form Submitted:', formData);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormStatus('success');
+    console.log('Form Submitted:', formData);
 
-//     setTimeout(() => {
-//       navigate('/user'); // Redirect to main dashboard after 2 seconds
-//     }, 2000);
+    setTimeout(() => {
+      navigate('/user'); // Redirect to main dashboard after 2 seconds
+    }, 2000);
 
-//     setFormData({
+// setFormData({
 //       name: '',
 //       email: '',
 //       feedback: '',
@@ -284,3 +284,4 @@ const FeedbackForm = () => {
 // };
 
 // export default FeedbackForm;
+    
