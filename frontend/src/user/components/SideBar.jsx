@@ -41,6 +41,13 @@ function SideBar() {
                     <span className="ml-3">Register as Candidate</span>
                   </Link>
                 </li>
+                {/* New item added to Profile Menu */}
+                <li>
+                  <Link to="/user/voting-apply" className="flex items-center px-5 py-2 rounded-lg hover:bg-blue-600 transition-all">
+                    <FaUser className="text-xl" />
+                    <span className="ml-3">Register As Voter</span>
+                  </Link>
+                </li>
                 <li>
                   <button onClick={() => console.log("Logging out...")} className="flex items-center px-5 py-2 rounded-lg hover:bg-red-600 transition-all w-full">
                     <FaSignOutAlt className="text-xl" />
@@ -60,12 +67,6 @@ function SideBar() {
             <Link to="/user" className="flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
               <FaHome className="text-xl mt-3" />
               <span className="ml-3 mt-3">Dashboard</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/user/voting-apply" className="flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
-              <FaUser className="text-xl" />
-              <span className="ml-3">Register As Voter</span>
             </Link>
           </li>
           <li>
@@ -113,12 +114,6 @@ function SideBar() {
             <Link to="/user" className="flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
               <FaHome className="text-xl" />
               <span className="ml-3">Dashboard</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/user/voting-apply" className="flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
-              <FaUser className="text-xl" />
-              <span className="ml-3">Register As Voter</span>
             </Link>
           </li>
           <li>
