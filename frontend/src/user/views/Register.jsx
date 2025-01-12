@@ -16,9 +16,9 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-200 via-white to-purple-100">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-200 via-white to-blue-100">
       <div className="w-full max-w-lg p-10 space-y-8 bg-white rounded-3xl shadow-2xl">
-        <h1 className="text-5xl font-extrabold text-center text-purple-700">
+        <h1 className="text-5xl font-extrabold text-center text-gray-700">
           Create Account
         </h1>
         <p className="text-center text-gray-500">
@@ -73,7 +73,7 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Create a password"
               required
-              className="px-4 py-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400"
+              className="px-4 py-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
             />
           </div>
           <div className="flex flex-col">
@@ -90,12 +90,12 @@ const Register = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Confirm your password"
               required
-              className="px-4 py-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400"
+              className="px-4 py-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
             />
           </div>
           <button
             type="submit"
-            className="w-full px-4 py-3 text-lg font-bold text-white bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg shadow-lg hover:from-purple-600 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-300"
+            className="w-full px-4 py-3 text-lg font-bold text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg shadow-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
           >
             Register
           </button>
@@ -127,7 +127,7 @@ const Register = () => {
           Already have an account?{" "}
           <a
             href="./user-login"
-            className="text-purple-500 font-semibold hover:underline"
+            className="text-blue-500 font-semibold hover:underline"
           >
             Login
           </a>
