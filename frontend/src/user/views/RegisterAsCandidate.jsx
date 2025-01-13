@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../Layout';
 
-function Register() {
+
+function RegisterAsCandidate() {
     const [formData, setFormData] = useState({
         name: '',
         address: '',
@@ -46,7 +47,7 @@ function Register() {
     };
 
     return (
-
+        <Layout>
             <div className="flex justify-center">
                 <div className="bg-white rounded-lg shadow-lg p-8 mt-10 w-full max-w-md">
                     <h1 className="text-2xl font-bold text-center mb-6">Register Candidate</h1>
@@ -102,8 +103,8 @@ function Register() {
                     </form>
                 </div>
             </div>
-    
+        </Layout>
     );
 }
 
-export default Register;
+export default RegisterAsCandidate;

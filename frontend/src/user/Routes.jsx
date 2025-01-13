@@ -12,7 +12,7 @@ import Login from "./views/Login";
 import Register from "./views/Register";
 import ProtectedRoute from "../utils/ProtectedRoute";
 import { Navigate } from "react-router-dom";
-
+import RegisterAsCandidate from "./views/RegisterAsCandidate";
 function UserRoutes()
 {
     return(
@@ -39,6 +39,14 @@ function UserRoutes()
         element={
           <ProtectedRoute requiredRole="user">
             <ApplyForVoting />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="candidate-register"
+        element={
+          <ProtectedRoute requiredRole="user">
+            <RegisterAsCandidate/>
           </ProtectedRoute>
         }
       />
@@ -92,7 +100,6 @@ function UserRoutes()
       />
 
     <Route path='login' element={<Login/>}/>
-    <Route path='voter-register' element={<Register/>}/>
         </Routes>
     )
 }
