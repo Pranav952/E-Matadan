@@ -1,9 +1,10 @@
 package com.ematadan.springboot.service;
 
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +15,25 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
+
 @Service
 public class JWTService {
 
-    private String key = "";
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+
+    private static final String BLACKLIST_PREFIX = "blacklisted_token:";
+    private final String secretKey;
+
     public JWTService() throws NoSuchAlgorithmException {
+        // Generate a secret key using HmacSHA256
         KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
         SecretKey sk = keyGenerator.generateKey();
-        key = Base64.getEncoder().encodeToString(sk.getEncoded());
-
+        this.secretKey = Base64.getEncoder().encodeToString(sk.getEncoded());
     }
+
     public String generateToken(String username, String role) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", role);
@@ -37,22 +46,23 @@ public class JWTService {
                 .and()
                 .signWith(getKey())
                 .compact();
-
+    
     }
 
-    public SecretKey getKey() {
-        byte[] keyBytes = Base64.getDecoder().decode(key);
-        return Keys.hmacShaKeyFor(keyBytes);
-    }
-
+    // Extract username from token
     public String extractUserName(String token) {
-
         return extractClaim(token, Claims::getSubject);
     }
 
-    private <T> T extractClaim(String token, Function<Claims, T> claimsTResolver) {
+    // Extract expiration date from token
+    public Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
+    }
+
+    // Extract specific claim from token
+    private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaim(token);
-        return claimsTResolver.apply(claims);
+        return claimsResolver.apply(claims);
     }
 
     private Claims extractAllClaim(String token) {
@@ -61,17 +71,45 @@ public class JWTService {
                 .build().parseSignedClaims(token)
                 .getPayload();
     }
+    
 
-    public boolean validateToken(String token, UserDetails userDetails) {
-        final String userName = extractUserName(token);
-        return (userName.equals(userDetails.getUsername()) && !isTokenExpired(token));
-    }
-
+    // Check if token has expired
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 
-    private Date extractExpiration(String token) {
-        return extractClaim(token, Claims::getExpiration);
+    // Validate token against username and blacklist
+    public boolean validateToken(String token, UserDetails userDetails) {
+        final String username = extractUserName(token);
+        return username.equals(userDetails.getUsername()) && !isTokenExpired(token) && !isTokenBlacklisted(token);
+    }
+
+    // Validate token (generic)
+    public boolean validateToken(String token) {
+        return !isTokenExpired(token) && !isTokenBlacklisted(token);
+    }
+
+    // Add token to blacklist
+    public void blacklistToken(String token) {
+        long ttl = extractExpiration(token).getTime() - System.currentTimeMillis();
+        if (ttl > 0) {
+            redisTemplate.opsForValue().set(BLACKLIST_PREFIX + token, "true", ttl, TimeUnit.MILLISECONDS);
+        }
+    }
+
+    // Check if token is blacklisted
+    public boolean isTokenBlacklisted(String token) {
+        return redisTemplate.hasKey(BLACKLIST_PREFIX + token);
+    }
+
+    // Get SecretKey for signing
+    public SecretKey getKey() {
+        byte[] keyBytes = Base64.getDecoder().decode(secretKey);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 }
+
+
+
+
+
