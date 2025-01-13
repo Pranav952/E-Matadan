@@ -9,7 +9,8 @@ import UserRoutes from './user/Routes';
 import Register from './user/views/Register';
 import Login from '../../frontend/src/Login';
 import Info from './admin/views/Info';
-import Dashboard from './admin/views/Dashboard';//importing the dashboard component
+import Dashboard from './admin/views/Dashboard';
+//importing the dashboard component
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     <Router>
       <Routes>
         {/* Default route */}
-        <Route path="/" element={<Dashboard/>} />//Logi page
+        <Route path="/" element={<Dashboard/>} /> {/*login page*/}
 
         {/* Login route */}
         <Route path="/login" element={<Login />} />
