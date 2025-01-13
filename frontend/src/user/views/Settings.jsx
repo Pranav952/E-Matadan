@@ -48,7 +48,7 @@ function UserSettings() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12 border border-gray-100">
+    <div className="max-w-4xl mx-auto p-8 bg-gradient-to-r from-teal-100 via-teal-200 to-teal-300 rounded-xl shadow-lg mt-12 border border-gray-100">
       <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">User Settings</h2>
 
       {/* Profile Section */}
@@ -81,7 +81,7 @@ function UserSettings() {
               name="name"
               value={userInfo.name}
               onChange={handleProfileChange}
-              className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300"
+              className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-600 focus:border-transparent transition duration-300"
             />
           </div>
           <div>
@@ -92,7 +92,7 @@ function UserSettings() {
               name="email"
               value={userInfo.email}
               onChange={handleProfileChange}
-              className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300"
+              className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-600 focus:border-transparent transition duration-300"
             />
           </div>
         </div>
@@ -110,7 +110,7 @@ function UserSettings() {
               name="oldPassword"
               value={passwords.oldPassword}
               onChange={handlePasswordChange}
-              className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-300"
+              className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-600 focus:border-transparent transition duration-300"
             />
           </div>
           <div>
@@ -121,7 +121,7 @@ function UserSettings() {
               name="newPassword"
               value={passwords.newPassword}
               onChange={handlePasswordChange}
-              className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-300"
+              className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-600 focus:border-transparent transition duration-300"
             />
           </div>
           <div>
@@ -132,7 +132,7 @@ function UserSettings() {
               name="confirmPassword"
               value={passwords.confirmPassword}
               onChange={handlePasswordChange}
-              className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-300"
+              className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-600 focus:border-transparent transition duration-300"
             />
           </div>
         </div>
