@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../Layout';
 
-function VoterList() {
+
+function UserDetail() {
     const [voters, setVoters] = useState([]);
     const [message, setMessage] = useState('');
     const [messageType, setMessageType] = useState(''); // 'success' or 'error'
@@ -118,4 +119,4 @@ function VoterList() {
     );
 }
 
-export default VoterList;
+export default UserDetail;

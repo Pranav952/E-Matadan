@@ -19,6 +19,7 @@ const Login = () => {
         },
         body: JSON.stringify({ username, password }), // Use username instead of email
       });
+      console.log('here')
 
       if (response.ok) {
         const data = await response.json();
