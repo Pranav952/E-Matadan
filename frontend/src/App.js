@@ -8,7 +8,7 @@ import AdminRoutes from './admin/Routes';
 import UserRoutes from './user/Routes';
 import Register from './user/views/Register';
 import Login from './user/views/Login';
-import Dashboard from './admin/views/Dashboard';
+import Info from './admin/views/Info';
 
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     <Router>
       <Routes>
         {/* Default route */}
-        <Route path="/" element={<Dashboard/>} />
+        <Route path="/" element={<Info/>} />
 
         {/* Login route */}
         <Route path="/login" element={<Login />} />
