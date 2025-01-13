@@ -54,11 +54,20 @@ function UserSettings() {
 
         {/* Profile Section */}
         <div className="flex items-center space-x-6 mb-12">
-          <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-100 shadow-md">
+          <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-100 shadow-md relative">
             <img
               src={userInfo.profilePic || 'https://via.placeholder.com/150'}
               alt="Profile"
               className="w-full h-full object-cover"
+            />
+            <label htmlFor="profilePic" className="absolute bottom-2 right-2 bg-teal-600 text-white p-2 rounded-full cursor-pointer hover:bg-teal-700">
+              <i className="fas fa-camera"></i>
+            </label>
+            <input
+              type="file"
+              id="profilePic"
+              onChange={(e) => setUserInfo({ ...userInfo, profilePic: URL.createObjectURL(e.target.files[0]) })}
+              className="hidden"
             />
           </div>
           <div>
@@ -82,7 +91,8 @@ function UserSettings() {
                 name="name"
                 value={userInfo.name}
                 onChange={handleProfileChange}
-                className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-600 focus:border-transparent transition duration-300"
+                placeholder="John Doe"
+                className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-600 focus:border-transparent transition duration-300 placeholder-gray-500"
               />
             </div>
             <div>
@@ -93,7 +103,8 @@ function UserSettings() {
                 name="email"
                 value={userInfo.email}
                 onChange={handleProfileChange}
-                className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-600 focus:border-transparent transition duration-300"
+                placeholder="john.doe@example.com"
+                className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-600 focus:border-transparent transition duration-300 placeholder-gray-500"
               />
             </div>
           </div>
