@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import Layout from '../Layout';
-
+import React from react
+import Layout  from '../Layout';
 function RegisterAsVoter() {
     const [formData, setFormData] = useState({
         name: '',

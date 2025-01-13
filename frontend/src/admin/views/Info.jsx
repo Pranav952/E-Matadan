@@ -6,12 +6,12 @@ function Info() {
 
   const handleAdminLogin = () => {
     // Navigate to the user registration page for admin login
-    navigate("/admin");
+    navigate("./admin/dashboard");
   };
 
   const handleUserLogin = () => {
     // Navigate to the user registration page for user login
-    navigate("/user-login");
+    navigate("./login");
   };
 
   return (

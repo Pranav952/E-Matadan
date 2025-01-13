@@ -23,9 +23,7 @@ function Register() {
         setFormData({ ...formData, [name]: files ? files[0] : value });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const formDataToSubmit = new FormData();
+
 
         Object.keys(formData).forEach(key => formDataToSubmit.append(key, formData[key]));
 
