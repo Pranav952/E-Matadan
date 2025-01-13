@@ -43,6 +43,32 @@ public class UserController {
     public String home() {
         return "Welcome to Spring Security Home";
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Map<String, String>> logout(@RequestBody Map<String, String> request) {
+        String token = request.get("token");
+    
+        if (token == null || token.isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of("message", "Token is required"));
+        }
+    
+        try {
+            // Decode and validate token if necessary
+            String username = jwtService.extractUserName(token);
+    
+            // Add the token to the blacklist
+            jwtService.blacklistToken(token);
+    
+            // Optionally, perform additional cleanup (e.g., log logout activity)
+            System.out.println("User logged out: " + username);
+    
+            return ResponseEntity.ok(Map.of("message", "Logout successful"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body(Map.of("message", "An error occurred during logout"));
+        }
+    }
     
     @PostMapping("/register")
 public ResponseEntity<?> register(@RequestBody User user) {
@@ -91,6 +117,11 @@ public ResponseEntity<Map<String, String>> login(@RequestBody User user) {
     } else {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "Invalid credentials"));
     }
+
+
+
+   
+
     
 
     

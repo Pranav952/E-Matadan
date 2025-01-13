@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS with custom config
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for APIs
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("api/register", "api/login","/api/key").permitAll() // Allow public access
+                        .requestMatchers("api/register", "api/login","/api/key", "api/logout").permitAll() // Allow public access
                         .anyRequest().authenticated()) // Protect all other endpoints
                 .logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

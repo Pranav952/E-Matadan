@@ -3,7 +3,6 @@ package com.ematadan.springboot.controller;
 
 import com.ematadan.springboot.service.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
