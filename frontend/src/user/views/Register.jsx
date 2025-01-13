@@ -1,118 +1,127 @@
 import React, { useState } from "react";
 
-const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+function Register() {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState(""); // New email field
+  const [role, setRole] = useState("user"); // Default role is user
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
+
+    const formData = {
+      username,
+      email, // Include email in the form data
+      password,
+      role, // Include role in the form data
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log("Registration successful");
+        // Redirect or handle success
+      } else {
+        console.error("Registration failed");
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
     }
-    console.log("Registration Info:", { name, email, password });
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-brfrom-purple-200 via-white to-purple-100">
-      <div className="w-full max-w-lg p-10 space-y-8 bg-gray-200 rounded-3xl shadow-2xl">
-        <h1 className="text-5xl font-extrabold text-center text-gray-700">
-          Create Account
-        </h1>
-        <p className="text-center text-gray-500">
-          Sign up to join our amazing platform
-        </p>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="flex flex-col">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 py-10">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-semibold text-center mb-6">Register</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
             <label
-              htmlFor="name"
-              className="mb-2 text-sm font-semibold text-gray-700"
+              htmlFor="username"
+              className="block text-sm font-medium text-gray-700"
             >
-              Full Name
+              Username
             </label>
             <input
               type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your full name"
+              id="username"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
-              className="px-4 py-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400"
             />
           </div>
-          <div className="flex flex-col">
+
+          <div className="mb-4">
             <label
               htmlFor="email"
-              className="mb-2 text-sm font-semibold text-gray-700"
+              className="block text-sm font-medium text-gray-700"
             >
-              Email Address
+              Email
             </label>
             <input
               type="email"
               id="email"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
               required
-              className="px-4 py-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400"
             />
           </div>
-          <div className="flex flex-col">
+
+          <div className="mb-4">
             <label
               htmlFor="password"
-              className="mb-2 text-sm font-semibold text-gray-700"
+              className="block text-sm font-medium text-gray-700"
             >
               Password
             </label>
             <input
               type="password"
               id="password"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Create a password"
               required
-              className="px-4 py-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
             />
           </div>
-          <div className="flex flex-col">
-            <label
-              htmlFor="confirmPassword"
-              className="mb-2 text-sm font-semibold text-gray-700"
-            >
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm your password"
-              required
-              className="px-4 py-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full px-4 py-3 text-lg font-bold text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg shadow-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
-          >
-            Register
-          </button>
-        </form>
 
-        <p className="mt-6 text-sm text-center text-gray-600">
-          Already have an account?{" "}
-          <a
-            href="./user-login"
-            className="text-blue-500 font-semibold hover:underline"
-          >
-            Login
-          </a>
-        </p>
+          <div className="mb-4">
+            <label
+              htmlFor="role"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Role
+            </label>
+            <select
+              id="role"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="user">User</option>
+              <option value="candidate">Candidate</option>
+            </select>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <button
+              type="submit"
+              className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-700 transition"
+            >
+              Register
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
-};
+}
 
 export default Register;

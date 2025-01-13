@@ -35,7 +35,7 @@ function UserRoutes()
         }
       />
       <Route
-        path="voting-apply"
+        path="voter-register"
         element={
           <ProtectedRoute requiredRole="user">
             <ApplyForVoting />
@@ -91,8 +91,8 @@ function UserRoutes()
         }
       />
 
-    <Route path='user-login' element={<Login/>}/>
-    <Route path='user-register' element={<Register/>}/>
+    <Route path='login' element={<Login/>}/>
+    <Route path='voter-register' element={<Register/>}/>
         </Routes>
     )
 }
