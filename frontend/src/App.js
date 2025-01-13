@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import AdminRoutes from './admin/Routes';
 import UserRoutes from './user/Routes';
 import Register from './user/views/Register';
-import Login from '../../frontend/src/Login';
+import Login from './user/views/Login';
 import Info from './admin/views/Info';
 import Dashboard from './admin/views/Dashboard';
 //importing the dashboard component

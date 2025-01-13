@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Layout from "./admin/Layout";
+import Layout from "../../admin/Layout";
 
 const Login = () => {
   const [username, setUsername] = useState(""); // State for username

@@ -8,7 +8,7 @@ import Support from "./views/Supports";
 import Setting from "./views/Settings";
 import Notification from "./views/Notifications";
 import Result from "./views/Results";
-// import Login from "./views/Login";
+import Login from "./views/Login";
 import Register from "./views/Register";
 import { Navigate } from "react-router-dom";
 
@@ -27,7 +27,7 @@ function UserRoutes() {
       <Route path="notifications" element={<Notification />} />
       
       {/* Uncomment the login route if necessary */}
-      {/* <Route path='/login' element={<Login/>}/> */}
+      <Route path='/login' element={<Login/>}/>
       <Route path="register" element={<Register />} />
     </Routes>
   );
