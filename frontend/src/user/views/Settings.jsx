@@ -51,7 +51,7 @@ function UserSettings() {
   return (
     <Layout> {/* Make sure to wrap the content inside Layout */}
       <div className="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-10 min-h-screen">
-        <div className="max-w-4xl mx-auto p-8 bg-white bg-opacity-80 rounded-xl shadow-lg mt-12 border border-gray-100">
+        <div className="max-w-4xl mx-auto p-8 bg-white bg-opacity-90 rounded-xl shadow-lg mt-12 border border-gray-300 overflow-y-auto max-h-screen scroll-smooth">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">User Settings</h2>
 
           {/* Profile Section */}

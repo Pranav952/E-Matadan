@@ -5,7 +5,7 @@ function Layout({ children }) {
   return (
     <div className="flex h-screen overflow-hidden">
       <SideBar/>
-      <main className="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-10 min-h-screen w-full">
+      <main className="flex-1 bg-gray-100 p-8 md:ml-64 transition-all">
         {children}
       </main>
     </div>
