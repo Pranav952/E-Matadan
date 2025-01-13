@@ -86,13 +86,13 @@ function AdminRoutes() {
           </ProtectedRoute>
         }
       /> */}
-                  <Route path='admin' element={<Dashboard/>}/>
-            <Route path="admin/users" element={<Users/>}/>
-            <Route path="admin/candidates" element={<Candidate/>}/>
-            <Route path='admin/votes' element={<Votes/>}/>
+            <Route path='' element={<Dashboard/>}/>
+            <Route path="users" element={<Users/>}/>
+            <Route path="candidates" element={<Candidate/>}/>
+            <Route path='votes' element={<Votes/>}/>
             <Route path="/voters/:id" element={<UserDetail/>} />
-            <Route path='admin/results' element={<Results/>}/>
-            <Route path='admin/settings' element={<Settings/>}/>
+            <Route path='results' element={<Results/>}/>
+            <Route path='settings' element={<Settings/>}/>
             <Route path='' element={<Info/>}/>
     </Routes>
   );
