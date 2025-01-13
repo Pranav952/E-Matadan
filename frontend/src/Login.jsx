@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Layout from "../../admin/Layout";
+import Layout from "./admin/Layout";
 
 const Login = () => {
   const [username, setUsername] = useState(""); // State for username
@@ -110,7 +110,7 @@ const Login = () => {
           <p className="text-sm text-center text-gray-600">
             Don’t have an account?{" "}
             <a
-              href="./user-register"
+              href="./register"
               className="text-blue-500 font-semibold hover:underline"
             >
               Sign up
