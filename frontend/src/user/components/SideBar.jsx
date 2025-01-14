@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState} from "react";
+import { Link ,useNavigate} from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext"
 
 import { FaHome, FaUser, FaChartBar, FaCog, FaUserCircle, FaBars, FaTimes, FaSignOutAlt, FaVoteYea, FaBell, FaComment, FaQuestionCircle } from 'react-icons/fa';
@@ -8,6 +8,7 @@ function SideBar() {
   const { handleLogout } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const navigate = useNavigate(); 
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const toggleProfileMenu = () => setIsProfileMenuOpen(!isProfileMenuOpen);
@@ -20,7 +21,7 @@ function SideBar() {
         </button>
         <span className="text-2xl font-semibold text-center text-indigo-200 ml-5">ई-matadan</span>
         
-        {/* Profile and Notification Icons */}
+       
         <div className="flex items-center space-x-6 mr-10">
           <Link to="/user/notifications" className="text-white">
             <FaBell className="text-xl" />
@@ -29,7 +30,7 @@ function SideBar() {
             <button onClick={toggleProfileMenu} className="flex items-center text-white">
               <FaUserCircle className="text-2xl" />
             </button>
-            {/* Smooth Transition for Profile Menu */}
+   
             {isProfileMenuOpen && (
               <ul className="absolute right-0 mt-3 space-y-2 bg-blue-800 text-white p-2 rounded-lg shadow-md w-48 transition-transform transform duration-300 ease-in-out z-30">
                 <li>
@@ -44,7 +45,6 @@ function SideBar() {
                     <span className="ml-3">Register as Candidate</span>
                   </Link>
                 </li>
-                {/* New item added to Profile Menu */}
                 <li>
                   <Link to="/user/voter-register" className="flex items-center px-5 py-2 rounded-lg hover:bg-blue-600 transition-all">
                     <FaUser className="text-xl" />
@@ -53,7 +53,7 @@ function SideBar() {
                 </li>
                 <li>
                 <button
-                  onClick={handleLogout} // Call handleLogout on button click
+                  onClick={() => navigate("/user/logout")}
                   className="flex items-center px-5 py-2 rounded-lg hover:bg-red-600 transition-all w-full"
                      >
                    <FaSignOutAlt className="text-xl" />
@@ -66,7 +66,7 @@ function SideBar() {
         </div>
       </div>
 
-      {/* Sidebar Section */}
+  
       <div className="bg-blue-900 text-white w-64 space-y-6 px-2 py-7 md:block hidden fixed top-0 left-0 h-full z-10 pt-16">
         <ul className="space-y-4">
           <li>
@@ -108,7 +108,7 @@ function SideBar() {
         </ul>
       </div>
 
-      {/* Mobile Menu Section */}
+ 
       <div className={`fixed inset-0 bg-blue-900 text-white w-64 z-50 transform transition-transform ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"} md:hidden`}>
         <div className="flex justify-end p-4">
           <button onClick={toggleMobileMenu} className="text-white">
