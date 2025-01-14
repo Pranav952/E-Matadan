@@ -1,86 +1,123 @@
-import React, { useState, useEffect } from "react";
-import Layout from "../Layout";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Layout from '../Layout';
 
-function Candidate() {
-  const [candidates, setCandidates] = useState([]);
+function CandidateList() {
+    const [candidates, setCandidates] = useState([]);
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState(''); // 'success' or 'error'
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchedCandidates = [
-      {
-        id: 1,
-        name: "Subash Ray",
-        imageUrl: "https://via.placeholder.com/300x200?text=Subash+Ray",
-        experience: "3 years",
-        description:
-          "Subash is an innovative designer with an eye for modern UI/UX trends and user-centered design.",
-      },
-      {
-        id: 2,
-        name: "Ramesh Magar",
-        imageUrl: "https://via.placeholder.com/300x200?text=Ramesh+Magar",
-        experience: "3 years",
-        description:
-          "Ramesh is an innovative designer with an eye for modern UI/UX trends and user-centered design.",
-      },
-      {
-        id: 3,
-        name: "Sumit Bhujel",
-        imageUrl: "https://via.placeholder.com/300x200?text=Sumit+Bhujel",
-        experience: "4 years",
-        description:
-          "Sumit specializes in backend development and building scalable systems for businesses.",
-      },
-    ];
+    useEffect(() => {
+        fetchCandidates();
+    }, []);
 
-    setCandidates(fetchedCandidates);
-  }, []);
-  return (
-    <Layout>
-      <div className="p-8 bg-gradient-to-br from-purple-50 to-blue-100 min-h-screen">
-        <div className="max-w-7xl mx-auto h-screen overflow-y-auto">
-          <h1 className="text-6xl font-extrabold text-blue-900 mb-8 text-center shadow-xl px-8 py-4 bg-gradient-to-br from-blue-200 to-blue-400 rounded-lg">
-            Meet Our Candidates
-          </h1>
-          <p className="text-gray-600 text-lg text-center mb-16 px-4 sm:px-16 font-medium">
-            Explore the diverse talents and experiences of our candidates. Get
-            inspired by their skills and journeys.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
-            {candidates.map((candidate) => (
-              <div
-                key={candidate.id}
-                className="bg-white shadow-lg rounded-xl overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:bg-gradient-to-br from-teal-50 to-teal-200"
-              >
-                <div className="relative">
-                  <img
-                    src={candidate.imageUrl}
-                    alt={candidate.name}
-                    className="w-full h-56 object-cover rounded-t-xl transform transition duration-500 hover:scale-105"
-                  />
-                  <div className="absolute bottom-4 left-4 bg-blue-500 text-white py-1 px-3 rounded-full text-lg font-semibold shadow-md">
-                    {candidate.name}
-                  </div>
+    const fetchCandidates = async () => {
+        try {
+            const response = await fetch('http://localhost:8000/api/voting/candidates/');
+            if (response.ok) {
+                const data = await response.json();
+                setCandidates(data);
+            } else {
+                // setMessage('');
+                // setMessageType('success');
+            }
+        } catch (error) {
+            console.error('Error fetching candidates:', error);
+            setMessage('An error occurred while fetching candidates.');
+            setMessageType('error');
+        }
+    };
+
+    const handleDelete = async (id) => {
+        if (!window.confirm('Are you sure you want to delete this candidate?')) return;
+
+        try {
+            const response = await fetch(`http://localhost:8000/api/voting/candidates/${id}/`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                setMessage('Candidate deleted successfully.');
+                setMessageType('success');
+                setCandidates(candidates.filter((candidate) => candidate.id !== id));
+            } else {
+                setMessage('Failed to delete candidate.');
+                setMessageType('error');
+            }
+        } catch (error) {
+            console.error('Error deleting candidate:', error);
+            setMessage('An error occurred while deleting the candidate.');
+            setMessageType('error');
+        }
+    };
+
+    const handleView = (id) => {
+        navigate(`/admin/candidates/${id}`);
+    };
+
+    return (
+        <Layout>
+            <div className="flex justify-center">
+                <div className="bg-white rounded-lg shadow-lg p-8 mt-10 w-full max-w-4xl">
+                    <h1 className="text-3xl font-bold text-center mb-6">Candidate List</h1>
+
+                    {/* Success/Error Message */}
+                    {message && (
+                        <div
+                            className={`p-4 mb-4 rounded-md text-center ${
+                                messageType === 'success'
+                                    ? 'bg-green-100 text-green-800'
+                                    : 'bg-red-100 text-red-800'
+                            }`}
+                        >
+                            {message}
+                        </div>
+                    )}
+
+                    <table className="table-auto w-full border-collapse border border-gray-300">
+                        <thead>
+                            <tr className="bg-gray-100">
+                                <th className="border border-gray-300 px-4 py-2">ID</th>
+                                <th className="border border-gray-300 px-4 py-2">Name</th>
+                                <th className="border border-gray-300 px-4 py-2">Address</th>
+                                <th className="border border-gray-300 px-4 py-2">Party Name</th>
+                                <th className="border border-gray-300 px-4 py-2">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {candidates.map((candidate) => (
+                                <tr key={candidate.id}>
+                                    <td className="border border-gray-300 px-4 py-2">{candidate.id}</td>
+                                    <td className="border border-gray-300 px-4 py-2">{candidate.name}</td>
+                                    <td className="border border-gray-300 px-4 py-2">{candidate.address}</td>
+                                    <td className="border border-gray-300 px-4 py-2">{candidate.party_name}</td>
+                                    <td className="border border-gray-300 px-4 py-2">
+                                        <button
+                                            onClick={() => handleView(candidate.id)}
+                                            className="bg-blue-500 text-white py-1 px-3 rounded-md shadow hover:bg-blue-600 mr-2"
+                                        >
+                                            View
+                                        </button>
+                                        <button
+                                            onClick={() => handleDelete(candidate.id)}
+                                            className="bg-red-500 text-white py-1 px-3 rounded-md shadow hover:bg-red-600"
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                    {candidates.length === 0 && (
+                        <p className="text-center text-gray-500 mt-4">No candidates found.</p>
+                    )}
                 </div>
-                <div className="p-6">
-                  <p className="text-gray-600 text-sm mb-4 font-light">
-                    {candidate.description}
-                  </p>
-                  <div className="flex justify-between items-center mt-5">
-                    <button className="px-6 py-3 bg-gradient-to-br from-blue-500 to-indigo-600 text-white font-semibold rounded-full shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl">
-                      View Profile
-                    </button>
-                    <span className="text-sm text-gray-500">
-                      Experience: {candidate.experience}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </Layout>
-  );
+            </div>
+        </Layout>
+    );
 }
 
-export default Candidate;
+export default CandidateList;

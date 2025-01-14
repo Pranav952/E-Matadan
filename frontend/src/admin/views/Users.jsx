@@ -51,7 +51,7 @@ function VoterList() {
 
     const handleView = (id) => {
         // Redirect to the voter detail page
-        navigate(`/voters/${id}`);
+        navigate(`/admin/voters/${id}`);
     };
 
     return (
@@ -97,12 +97,12 @@ function VoterList() {
                                         >
                                             View
                                         </button>
-                                        <button
+                                        {/* <button
                                             onClick={() => handleDelete(voter.id)}
                                             className="bg-red-500 text-white py-1 px-3 rounded-md shadow hover:bg-red-600"
                                         >
                                             Delete
-                                        </button>
+                                        </button> */}
                                     </td>
                                 </tr>
                             ))}

@@ -90,7 +90,7 @@ function AdminRoutes() {
             <Route path="users" element={<Users/>}/>
             <Route path="candidates" element={<Candidate/>}/>
             <Route path='votes' element={<Votes/>}/>
-            <Route path="/voters/:id" element={<UserDetail/>} />
+            <Route path="voters/:id" element={<UserDetail/>} />
             <Route path='results' element={<Results/>}/>
             <Route path='settings' element={<Settings/>}/>
             <Route path='' element={<Info/>}/>

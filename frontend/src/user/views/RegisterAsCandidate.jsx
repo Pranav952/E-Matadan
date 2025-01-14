@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../Layout';
 
-
 function RegisterAsCandidate() {
     const [formData, setFormData] = useState({
         name: '',
@@ -48,11 +47,11 @@ function RegisterAsCandidate() {
 
     return (
         <Layout>
-            <div className="flex justify-center">
-                <div className="bg-white rounded-lg shadow-lg p-8 mt-10 w-full max-w-md">
+            <div className="min-h-screen flex justify-center items-center">
+                <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-lg md:max-w-3xl h-[700px] overflow-y-auto flex flex-col justify-between">
                     <h1 className="text-2xl font-bold text-center mb-6">Register Candidate</h1>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-4 flex-grow">
                         {['name', 'address', 'age', 'party_name', 'education', 'experience'].map(field => (
                             <div key={field}>
                                 <label className="block text-gray-700 font-medium mb-2 capitalize">{field}</label>

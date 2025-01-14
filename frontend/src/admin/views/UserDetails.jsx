@@ -1,118 +1,104 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import Layout from '../Layout';
 
-
 function UserDetail() {
-    const [voters, setVoters] = useState([]);
-    const [message, setMessage] = useState('');
-    const [messageType, setMessageType] = useState(''); // 'success' or 'error'
+    const { id } = useParams();
+    const [voter, setVoter] = useState(null);
     const navigate = useNavigate();
+    const baseUrl="http://localhost:8000/"
 
     useEffect(() => {
-        fetchVoters();
+        fetchVoterDetail();
     }, []);
 
-    const fetchVoters = async () => {
+    const fetchVoterDetail = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/voting/voters/');
+            const response = await fetch(`http://localhost:8000/api/voting/voters/${id}/`);
             if (response.ok) {
                 const data = await response.json();
-                setVoters(data);
+                setVoter(data);
             } else {
-                console.error('Failed to fetch voters');
+                console.error('Failed to fetch voter details');
             }
         } catch (error) {
-            console.error('Error fetching voters:', error);
+            console.error('Error fetching voter details:', error);
         }
     };
 
-    const handleDelete = async (id) => {
-        if (!window.confirm('Are you sure you want to delete this voter?')) return;
+    if (!voter) {
+        return <p>Loading voter details...</p>;
+    }
 
-        try {
-            const response = await fetch(`http://localhost:8000/api/voting/voters/${id}/`, {
-                method: 'DELETE',
-            });
-
-            if (response.ok) {
-                setMessage('Voter deleted successfully.');
-                setMessageType('success');
-                setVoters(voters.filter((voter) => voter.id !== id));
-            } else {
-                setMessage('Failed to delete voter.');
-                setMessageType('error');
-            }
-        } catch (error) {
-            console.error('Error deleting voter:', error);
-            setMessage('An error occurred while deleting the voter.');
-            setMessageType('error');
-        }
+    const handleAccept = () => {
+        console.log(`Accepting voter ID: ${voter.id}`);
     };
 
-    const handleView = (id) => {
-        // Redirect to the voter detail page
-        navigate(`/voters/${id}`);
+    const handleReject = () => {
+        console.log(`Rejecting voter ID: ${voter.id}`);
+    };
+
+    const handleBack = () => {
+        navigate(-1); 
     };
 
     return (
         <Layout>
             <div className="flex justify-center">
-                <div className="bg-white rounded-lg shadow-lg p-8 mt-10 w-full max-w-4xl">
-                    <h1 className="text-3xl font-bold text-center mb-6">Voter List</h1>
+                <div className="bg-white rounded-lg shadow-lg p-8 mt-10 w-full max-w-4xl overflow-auto" style={{ maxHeight: '80vh' }}>
+                    <h1 className="text-3xl font-bold text-center mb-6">Voter Details</h1>
 
-                    {/* Success/Error Message */}
-                    {message && (
-                        <div
-                            className={`p-4 mb-4 rounded-md text-center ${
-                                messageType === 'success'
-                                    ? 'bg-green-100 text-green-800'
-                                    : 'bg-red-100 text-red-800'
-                            }`}
+                    <div className="flex justify-center space-x-4">
+                        <button
+                            onClick={handleAccept}
+                            className="bg-green-500 text-white py-2 px-4 rounded-md shadow hover:bg-green-600"
                         >
-                            {message}
+                            Accept
+                        </button>
+                        <button
+                            onClick={handleReject}
+                            className="bg-red-500 text-white py-2 px-4 rounded-md shadow hover:bg-red-600"
+                        >
+                            Reject
+                        </button>
+                        <button
+                            onClick={handleBack}
+                            className="bg-gray-500 text-white py-2 px-4 rounded-md shadow hover:bg-gray-600"
+                        >
+                            Back
+                        </button>
+                    </div>
+
+                    <div className="mt-6">
+                        <p><strong>ID:</strong> {voter.id}</p>
+                        <p><strong>Name:</strong> {voter.name}</p>
+                        <p><strong>Surname:</strong> {voter.surname}</p>
+                        <p><strong>Address:</strong> {voter.address}</p>
+                        <p><strong>Citizenship Number:</strong> {voter.citizenship_number}</p>
+
+                        <div className="mt-4">
+                            <p><strong>Back Photo:</strong></p>
+                            {voter.citizenship_photo_back ? (
+                                <img src={`${baseUrl}${voter.citizenship_photo_back}`} alt="Back Photo" className="w-full max-w-xs mb-4" />
+                            ) : (
+                                <p>No Back Photo Available</p>
+                            )}
+
+                            <p><strong>Front Photo:</strong></p>
+                            {voter.citizenship_photo_front ? (
+                                <img src={`${baseUrl}${voter.citizenship_photo_front}`} alt="Front Photo" className="w-full max-w-xs mb-4" />
+                            ) : (
+                                <p>No Front Photo Available</p>
+                            )}
+
+                            <p><strong>Profile Photo:</strong></p>
+                            {voter.photo ? (
+                                <img src={`${baseUrl}${voter.photo}`} alt="Profile Photo" className="w-full max-w-xs mb-4" />
+                            ) : (
+                                <p>No Profile Photo Available</p>
+                            )}
                         </div>
-                    )}
-
-                    <table className="table-auto w-full border-collapse border border-gray-300">
-                        <thead>
-                            <tr className="bg-gray-100">
-                                <th className="border border-gray-300 px-4 py-2">ID</th>
-                                <th className="border border-gray-300 px-4 py-2">Name</th>
-                                <th className="border border-gray-300 px-4 py-2">Address</th>
-                                <th className="border border-gray-300 px-4 py-2">Citizenship Number</th>
-                                <th className="border border-gray-300 px-4 py-2">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {voters.map((voter) => (
-                                <tr key={voter.id}>
-                                    <td className="border border-gray-300 px-4 py-2">{voter.id}</td>
-                                    <td className="border border-gray-300 px-4 py-2">{voter.name}</td>
-                                    <td className="border border-gray-300 px-4 py-2">{voter.address}</td>
-                                    <td className="border border-gray-300 px-4 py-2">{voter.citizenship_number}</td>
-                                    <td className="border border-gray-300 px-4 py-2">
-                                        <button
-                                            onClick={() => handleView(voter.id)}
-                                            className="bg-blue-500 text-white py-1 px-3 rounded-md shadow hover:bg-blue-600 mr-2"
-                                        >
-                                            View
-                                        </button>
-                                        <button
-                                            onClick={() => handleDelete(voter.id)}
-                                            className="bg-red-500 text-white py-1 px-3 rounded-md shadow hover:bg-red-600"
-                                        >
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-
-                    {voters.length === 0 && (
-                        <p className="text-center text-gray-500 mt-4">No voters found.</p>
-                    )}
+                    </div>
                 </div>
             </div>
         </Layout>
