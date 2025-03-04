@@ -7,7 +7,6 @@ import AdminRoutes from './admin/Routes';
 import UserRoutes from './user/Routes';
 import Register from './user/views/Register';
 import Login from './user/views/Login';
-import Dashboard from './admin/views/Dashboard';
 import { Navigate } from 'react-router-dom'; 
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
@@ -17,7 +16,7 @@ function App() {
       <AuthProvider>
         <Routes>
           {/* Default route */}
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Login />} />
 
           {/* Login route */}
           <Route path="/login" element={<Login />} />
